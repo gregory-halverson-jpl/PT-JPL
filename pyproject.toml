@@ -46,9 +46,6 @@ dev = [
     "twine"
 ]
 
-[tool.setuptools.package-data]
-PTJPL = ["*.tif"]
-
 [tool.setuptools.packages.find]
 exclude = ["notebooks*", "references*"]
 

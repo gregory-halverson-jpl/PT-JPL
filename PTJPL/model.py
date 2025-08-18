@@ -357,4 +357,6 @@ def PTJPL(
     LE = np.clip(LE, 0, PET)
     results["LE"] = LE
 
+    Rn_daily_Wm2 = daily_Rn_integration_verma
+
     return results
