@@ -28,6 +28,7 @@ dependencies = [
     "rasters>=1.7.1",
     "SEBAL-soil-heat-flux",
     "solar-apparent-time",
+    "vegetation-conversion",
     "verma-net-radiation>=1.8.0"
 ]
 requires-python = ">=3.10"
