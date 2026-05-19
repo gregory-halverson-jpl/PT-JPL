@@ -3,7 +3,7 @@ import numpy as np
 import rasters as rt
 from rasters import Raster
 
-from ..constants import KRN
+from .constants import KRN
 
 def calculate_soil_net_radiation(
         Rn: Union[Raster, np.ndarray], 

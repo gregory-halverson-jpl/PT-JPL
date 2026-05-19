@@ -3,7 +3,7 @@ import numpy as np
 import rasters as rt
 from rasters import Raster
 
-from ..constants import PT_ALPHA
+from .constants import PT_ALPHA
 
 def calculate_soil_latent_heat_flux(
         Rn_soil: Union[Raster, np.ndarray], 

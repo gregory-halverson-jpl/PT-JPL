@@ -11,7 +11,7 @@ from .constants import *
 from .model import PTJPL
 from .Topt import load_Topt
 from .fAPARmax import load_fAPARmax
-from .partitioning.fwet import RH_THRESHOLD, MIN_FWET
+from .fwet import RH_THRESHOLD, MIN_FWET
 
 logger = logging.getLogger(__name__)
 

@@ -3,7 +3,7 @@ import numpy as np
 import rasters as rt
 from rasters import Raster
 
-from ..constants import BETA_PA
+from .constants import BETA_PA
 
 def calculate_soil_moisture_constraint(
         RH: Union[Raster, np.ndarray], 

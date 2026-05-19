@@ -51,17 +51,17 @@ from vegetation_conversion import SAVI_from_NDVI
 from vegetation_conversion import fAPAR_from_SAVI
 from vegetation_conversion import fIPAR_from_NDVI
 
-from .partitioning import RH_THRESHOLD, MIN_FWET
-from .partitioning import calculate_relative_surface_wetness
-from .partitioning import calculate_green_canopy_fraction
-from .partitioning import calculate_plant_moisture_constraint
-from .partitioning import calculate_soil_moisture_constraint
-from .partitioning import calculate_plant_temperature_constraint
+from .fwet import RH_THRESHOLD, MIN_FWET
+from .fwet import calculate_relative_surface_wetness
+from .fg import calculate_green_canopy_fraction
+from .fM import calculate_plant_moisture_constraint
+from .fSM import calculate_soil_moisture_constraint
+from .fT import calculate_plant_temperature_constraint
 
-from .partitioning import calculate_soil_net_radiation
-from .partitioning import calculate_soil_latent_heat_flux
-from .partitioning import calculate_canopy_latent_heat_flux
-from .partitioning import calculate_interception
+from .soil_net_radiation import calculate_soil_net_radiation
+from .soil_latent_heat_flux import calculate_soil_latent_heat_flux
+from .canopy_latent_heat_flux import calculate_canopy_latent_heat_flux
+from .interception import calculate_interception
 
 from .fAPARmax import load_fAPARmax
 from .Topt import load_Topt

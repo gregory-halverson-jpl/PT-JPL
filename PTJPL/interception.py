@@ -4,7 +4,7 @@ import numpy as np
 import rasters as rt
 from rasters import Raster
 
-from ..constants import PT_ALPHA
+from .constants import PT_ALPHA
 
 def calculate_interception(
         Rn_canopy: Union[Raster, np.ndarray],
