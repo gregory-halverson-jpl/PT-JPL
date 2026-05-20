@@ -43,7 +43,8 @@ from SEBAL_soil_heat_flux import calculate_SEBAL_soil_heat_flux
 
 from priestley_taylor import PT_ALPHA
 from priestley_taylor import GAMMA_PA
-from priestley_taylor import delta_Pa_from_Ta_C
+from priestley_taylor import epsilon_from_Ta_C
+from priestley_taylor import priestley_taylor as calculate_priestley_taylor
 
 from .constants import *
 
@@ -308,13 +309,11 @@ def PTJPL(
     # --- Priestley-Taylor epsilon calculation ---
 
     if epsilon is None:
-        # Calculate delta if not provided
-        if delta_Pa is None:
-            # Slope of saturation vapor pressure curve (Pa/C)
-            delta_Pa = delta_Pa_from_Ta_C(Ta_C)
-
-        # Calculate epsilon = delta / (delta + gamma)
-        epsilon = delta_Pa / (delta_Pa + gamma_Pa)
+        epsilon = epsilon_from_Ta_C(
+            Ta_C=Ta_C,
+            delta_Pa=delta_Pa,
+            gamma_Pa=gamma_Pa
+        )
 
     # --- Soil evaporation ---
 
@@ -333,7 +332,15 @@ def PTJPL(
     results["Rn_canopy_Wm2"] = Rn_canopy_Wm2
 
     # Calculate potential evapotranspiration (PET)
-    PET_Wm2 = PT_alpha * epsilon * (Rn_Wm2 - G_Wm2)
+    PET_Wm2 = calculate_priestley_taylor(
+        Rn_Wm2=Rn_Wm2,
+        G_Wm2=G_Wm2,
+        Ta_C=Ta_C,
+        epsilon=epsilon,
+        PT_alpha=PT_alpha,
+        GEOS5FP_connection=GEOS5FP_connection,
+        resampling=resampling
+    )["LE_potential_Wm2"]
     results["PET_Wm2"] = PET_Wm2
 
     # Calculate canopy transpiration (LE_canopy)
