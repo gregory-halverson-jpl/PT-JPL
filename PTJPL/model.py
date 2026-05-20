@@ -44,7 +44,7 @@ from SEBAL_soil_heat_flux import calculate_SEBAL_soil_heat_flux
 from priestley_taylor import PT_ALPHA
 from priestley_taylor import GAMMA_PA
 from priestley_taylor import epsilon_from_Ta_C
-from priestley_taylor import priestley_taylor as calculate_priestley_taylor
+from priestley_taylor import priestley_taylor
 
 from .constants import *
 
@@ -332,7 +332,7 @@ def PTJPL(
     results["Rn_canopy_Wm2"] = Rn_canopy_Wm2
 
     # Calculate potential evapotranspiration (PET)
-    PET_Wm2 = calculate_priestley_taylor(
+    PET_Wm2 = priestley_taylor(
         Rn_Wm2=Rn_Wm2,
         G_Wm2=G_Wm2,
         Ta_C=Ta_C,
