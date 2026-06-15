@@ -54,7 +54,7 @@ from vegetation_conversion import fIPAR_from_NDVI
 
 from .fwet import RH_THRESHOLD, MIN_FWET
 from .fwet import calculate_relative_surface_wetness
-from .fg import calculate_green_canopy_fraction
+from .fg import calculate_green_canopy_fraction, BARREN_GREEN_CANOPY_VALUE
 from .fM import calculate_plant_moisture_constraint
 from .fSM import calculate_soil_moisture_constraint
 from .fT import calculate_plant_temperature_constraint
@@ -90,6 +90,7 @@ def PTJPL(
     PT_alpha: float = PT_ALPHA,
     minimum_Topt: float = MINIMUM_TOPT,
     RH_threshold: float = RH_THRESHOLD,
+    barren_green_canopy_value: float = BARREN_GREEN_CANOPY_VALUE,
     min_fwet: float = MIN_FWET,
     floor_Topt: bool = FLOOR_TOPT,
     upscale_to_daylight: bool = False,
@@ -283,7 +284,11 @@ def PTJPL(
     fIPAR = np.where(fIPAR == 0, np.nan, fIPAR)
 
     # Calculate green canopy fraction (fg), constrained between 0 and 1
-    fg = calculate_green_canopy_fraction(fAPAR, fIPAR)
+    fg = calculate_green_canopy_fraction(
+        fAPAR=fAPAR, 
+        fIPAR=fIPAR,
+        barren_green_canopy_value=barren_green_canopy_value
+    )
 
     # Calculate plant moisture constraint (fM), constrained between 0 and 1
     fM = calculate_plant_moisture_constraint(fAPAR, fAPARmax)
